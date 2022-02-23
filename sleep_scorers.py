@@ -1,4 +1,5 @@
 import tensorflow as tf
+from attention import MultiHeadAttention
 
 
 class CnnAttentionOnEpoch(tf.keras.Model):
@@ -14,6 +15,8 @@ class CnnAttentionOnEpoch(tf.keras.Model):
                                               strides=100,
                                               padding="valid"
                                               )
+
+        self.mha_1 = MultiHeadAttention(d_model=32, num_heads=8)
 
     def call(self, inputs):
         # input_shape (Batch_size, 3000)
